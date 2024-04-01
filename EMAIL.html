@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="emailValidationApp">
+<head>
+<title>Email Validation</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="MainController">
+  <p>Hello, welcome!</p>
+  <form name="emailForm" ng-submit="submitForm()" novalidate>
+    <label>Email:</label>
+    <input type="email" name="email" ng-model="user.email" required />
+    <button type="submit">Submit</button>
+  </form>
+  <p ng-show="submitted">{{ isEmailValid }}</p>
+</div>
+<script>
+  angular.module('emailValidationApp', [])
+  .controller('MainController', function($scope) {
+    $scope.submitForm = function() {
+      console.log('Form submitted with email: ' + $scope.user.email);
+      $scope.submitted = true;
+      $scope.isEmailValid = $scope.emailForm.email.$valid;
+    };
+  });
+</script>
+</body>
+</html>

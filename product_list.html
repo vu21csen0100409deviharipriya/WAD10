@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="productApp">
+<head>
+ <title>Product List</title>
+ <style>
+ .product {
+ margin-bottom: 10px;
+ }
+ .product-name {
+ display: inline-block;
+ width: 150px;
+ }
+ .product-price {
+ display: inline-block;
+ }
+ .title {
+ font-weight: bold;
+ }
+ </style>
+ <script 
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+ <div ng-controller="ProductController">
+ <h1>Product List</h1> 
+ <input type="text" ng-model="searchKeyword" placeholder="Search by Name" />
+ 
+ <div class="product">
+ <span class="product-name title">Name</span>
+ <span class="product-price title">Price</span>
+ </div>
+ <div class="product" ng-repeat="product in products | filter:searchKeyword">
+ <span class="product-name">{{ product.name }}</span>
+ <span class="product-price">{{ product.price }}</span>
+ </div>
+ </div>
+ <script>
+ angular.module('productApp', [])
+ .controller('ProductController', function($scope) {
+ $scope.products = [
+ { name: 'Product 1', price: 10 },
+ { name: 'Product 2', price: 15 },
+ { name: 'Product 3', price: 20 },
+ { name: 'Product 4', price: 25 }
+ ];
+ });
+ </script>
+</body>
+</html>
